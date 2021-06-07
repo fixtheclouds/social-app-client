@@ -3,7 +3,7 @@ import * as webpack from 'webpack'
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: './index.tsx',
+  entry: './src/index.tsx',
   module: {
     rules: [
       {
