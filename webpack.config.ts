@@ -1,9 +1,9 @@
-import * as path from 'path';
-import * as webpack from 'webpack';
+import * as path from 'path'
+import * as webpack from 'webpack'
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: './client/index.tsx',
+  entry: './index.tsx',
   module: {
     rules: [
       {
@@ -14,16 +14,16 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/assets'),
+    path: path.resolve(__dirname, 'public/'),
   },
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
-    compress: true
-  }
-};
+    compress: true,
+  },
+}
 
-export default config;
+export default config

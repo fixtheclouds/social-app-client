@@ -11,8 +11,5 @@
     "module": "commonjs",
     "isolatedModules": true,
     "jsx": "react"
-  },
-  "include": [
-    "client"
-  ]
+  }
 }

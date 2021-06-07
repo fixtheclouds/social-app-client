@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack serve --hot --port 3030 --open",
     "build": "webpack --watch",
-    "lint": "eslint client/ --ext .tsx,.ts --fix",
+    "lint": "eslint --ext .tsx,.ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
