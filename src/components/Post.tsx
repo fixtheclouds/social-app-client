@@ -3,7 +3,7 @@ import { IPost } from '../interfaces'
 import { Box, Center, Text, Stack, Image, Avatar, useColorModeValue } from '@chakra-ui/react'
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
 
-export default function Post(props: IPost) {
+export default function Post(props: IPost): JSX.Element {
   const { body, createdAt, user, imageUrl, liked, likesCount } = props
 
   return (

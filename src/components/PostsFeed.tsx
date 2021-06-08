@@ -6,7 +6,7 @@ import { IPost } from '../interfaces'
 
 import Post from './Post'
 
-export default function PostsFeed() {
+export default function PostsFeed(): JSX.Element {
   const { loading, error, data } = useQuery(postsQuery)
 
   if (loading) return <p>Loading...</p>

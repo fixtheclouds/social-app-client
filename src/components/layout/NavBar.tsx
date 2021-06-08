@@ -15,8 +15,14 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 
-const NavLink = ({ children }: { children: React.ReactNode }) => (
+interface INavLink {
+  children: string | JSX.Element
+  href: string
+}
+
+const NavLink = (props: INavLink) => (
   <Link
     px={2}
     py={1}
@@ -25,9 +31,10 @@ const NavLink = ({ children }: { children: React.ReactNode }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}
+    as={RouterLink}
+    to={props.href}
   >
-    {children}
+    {props.children}
   </Link>
 )
 
@@ -36,7 +43,7 @@ const NavLink = ({ children }: { children: React.ReactNode }) => (
 
 const Links = ['About', 'Search']
 
-export default function NavBar() {
+export default function NavBar(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -49,10 +56,14 @@ export default function NavBar() {
           onClick={isOpen ? onClose : onOpen}
         />
         <HStack spacing={8} alignItems={'center'}>
-          <Box>Logo</Box>
+          <NavLink href="/">
+            <Box>Logo</Box>
+          </NavLink>
           <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
             {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
+              <NavLink key={link} href={link.toLowerCase()}>
+                {link}
+              </NavLink>
             ))}
           </HStack>
         </HStack>

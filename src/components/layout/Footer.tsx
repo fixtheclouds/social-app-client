@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}

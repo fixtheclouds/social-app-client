@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
-export default function SimpleCard() {
+export default function SimpleCard(): JSX.Element {
   return (
     <Flex
       minH={'100vh'}
