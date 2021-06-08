@@ -4,7 +4,7 @@ import postsQuery from '../queries/postsQuery'
 
 import { IPost } from '../interfaces'
 
-import Post from './Post'
+import Post from '../components/Post'
 
 export default function PostsFeed(): JSX.Element {
   const { loading, error, data } = useQuery(postsQuery)

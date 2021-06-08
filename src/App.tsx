@@ -3,8 +3,11 @@ import { ChakraProvider, Container, theme, VStack } from '@chakra-ui/react'
 
 import NavBar from './components/layout/NavBar'
 import Footer from './components/layout/Footer'
-import Posts from './components/PostsFeed'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+
+import PostsFeed from './pages/PostsFeed'
+import Search from './pages/Search'
+import About from './pages/About'
 
 export const App = (): JSX.Element => {
   return (
@@ -12,13 +15,19 @@ export const App = (): JSX.Element => {
       <Router>
         <NavBar />
         <Container maxW="container.md">
-          <Switch>
-            <Route path="/">
-              <VStack spacing={4} align="stretch">
-                <Posts />
-              </VStack>
-            </Route>
-          </Switch>
+          <VStack spacing={4} align="stretch">
+            <Switch>
+              <Route exact path="/">
+                <PostsFeed />
+              </Route>
+              <Route path="/search">
+                <Search />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+            </Switch>
+          </VStack>
         </Container>
         <Footer />
       </Router>

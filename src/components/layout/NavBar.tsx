@@ -22,7 +22,7 @@ interface INavLink {
   href: string
 }
 
-const NavLink = (props: INavLink) => (
+const NavLink = ({ href, children }: INavLink) => (
   <Link
     px={2}
     py={1}
@@ -32,9 +32,9 @@ const NavLink = (props: INavLink) => (
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
     as={RouterLink}
-    to={props.href}
+    to={href}
   >
-    {props.children}
+    {children}
   </Link>
 )
 
