@@ -1,21 +1,24 @@
-import * as React from 'react'
+import React from 'react'
 import { IPost } from '../interfaces'
-import { Box, Center, Text, Stack, Image, Avatar, useColorModeValue, Button } from '@chakra-ui/react'
+import { Box, Center, Text, Stack, Image, Avatar, Button } from '@chakra-ui/react'
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
+import { useMutation } from '@apollo/client'
+import createLikeMutation from '../queries/createLikeMutation'
 
 export default function Post(props: IPost): JSX.Element {
   const { body, createdAt, user, imageUrl, liked, likesCount } = props
+  const [createLike] = useMutation(createLikeMutation, {
+    update() {
+      return false
+    }
+  })
+  const setLike = () => {
+    createLike({ variables: { likeableType: 'Post', likeableId: props.id } })
+  }
 
   return (
     <Center py={6}>
-      <Box
-        w={'full'}
-        bg={useColorModeValue('white', 'gray.900')}
-        boxShadow={'2xl'}
-        rounded={'md'}
-        p={6}
-        overflow={'hidden'}
-      >
+      <Box w={'full'} boxShadow={'2xl'} rounded={'md'} p={6} overflow={'hidden'}>
         <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
           <Avatar src={user.avatarUrl} alt={user.username} />
           <Stack direction={'column'} spacing={0} fontSize={'sm'}>
@@ -30,7 +33,7 @@ export default function Post(props: IPost): JSX.Element {
           <Text color={'gray.500'}>{body}</Text>
         </Stack>
         <Stack direction="row">
-          <Button aria-label="Like" variant="outline">
+          <Button aria-label="Like" variant="outline" onClick={setLike}>
             {liked ? <IoIosHeart size="2em" /> : <IoIosHeartEmpty size="2em" />}
             <Text color={'gray.500'}>{likesCount || 0}</Text>
           </Button>
