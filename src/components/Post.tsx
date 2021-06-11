@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IPost } from '../interfaces'
 import { Box, Center, Text, Stack, Image, Avatar, Button } from '@chakra-ui/react'
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
@@ -9,15 +9,21 @@ import unlikeMutation from '../queries/unlikeMutation'
 export default function Post(props: IPost): JSX.Element {
   const { body, createdAt, user, imageUrl, liked, likesCount } = props
   const [like] = useMutation(likeMutation, {
-    update() {
-      return false
-    }
+    onCompleted({ like: { likesCount } }) {
+      setIsLiked(true)
+      setCurrentLikesCount(likesCount)
+      return true
+    },
   })
   const [unlike] = useMutation(unlikeMutation, {
-    update() {
-      return false
-    }
+    onCompleted({ unlike: { likesCount } }) {
+      setIsLiked(false)
+      setCurrentLikesCount(likesCount)
+      return true
+    },
   })
+  const [isLiked, setIsLiked] = useState(liked)
+  const [currentLikesCount, setCurrentLikesCount] = useState(likesCount)
   const setLike = () => {
     like({ variables: { likeableType: 'Post', likeableId: props.id } })
   }
@@ -42,9 +48,9 @@ export default function Post(props: IPost): JSX.Element {
           <Text color={'gray.500'}>{body}</Text>
         </Stack>
         <Stack direction="row">
-          <Button aria-label="Like" variant="outline" onClick={liked ? unsetLike : setLike }>
-            {liked ? <IoIosHeart size="2em" /> : <IoIosHeartEmpty size="2em" />}
-            <Text color={'gray.500'}>{likesCount || 0}</Text>
+          <Button aria-label="Like" variant="outline" onClick={isLiked ? unsetLike : setLike}>
+            {isLiked ? <IoIosHeart size="2em" /> : <IoIosHeartEmpty size="2em" />}
+            <Text color={'gray.500'}>{currentLikesCount || 0}</Text>
           </Button>
         </Stack>
       </Box>
