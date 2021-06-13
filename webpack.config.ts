@@ -23,6 +23,8 @@ const config: webpack.Configuration = {
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
     compress: true,
+    publicPath: '/',
+    historyApiFallback: true,
   },
 }
 
