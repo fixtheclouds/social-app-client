@@ -69,6 +69,7 @@ export default function NavBar(): JSX.Element {
         </HStack>
         <Flex alignItems={'center'}>
           <Menu>
+            {/* TODO: bring back once auth works
             <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'}>
               <Avatar
                 size={'sm'}
@@ -83,6 +84,8 @@ export default function NavBar(): JSX.Element {
               <MenuDivider />
               <MenuItem>Link 3</MenuItem>
             </MenuList>
+              */}
+            <NavLink href="/login">Login</NavLink>
           </Menu>
         </Flex>
       </Flex>

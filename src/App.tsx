@@ -8,6 +8,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import PostsFeed from './pages/PostsFeed'
 import Search from './pages/Search'
 import About from './pages/About'
+import Login from './pages/Login'
 
 export const App = (): JSX.Element => {
   return (
@@ -25,6 +26,9 @@ export const App = (): JSX.Element => {
               </Route>
               <Route path="/about">
                 <About />
+              </Route>
+              <Route path="/login">
+                <Login />
               </Route>
             </Switch>
           </VStack>
