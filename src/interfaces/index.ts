@@ -17,3 +17,11 @@ export interface IPost {
   liked?: boolean
   likesCount?: number
 }
+
+export interface ILoginState {
+  email: string
+  password: string
+  rememberMe?: boolean
+  user: IUser
+  token: string
+}
